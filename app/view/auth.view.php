@@ -6,4 +6,8 @@ class authView {
         require 'templates/login.phtml';
     }
 
+    function showRegistro(){
+        require 'templates/registro.phtml';
+    }
+
 }

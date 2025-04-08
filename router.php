@@ -20,9 +20,13 @@ switch($params[0]){
         $homeController->showHome();
         break;
         
-    case 'inicioSesion' : 
+    case 'login' : 
         $authController = new authController();
         $authController->showLogin();
         break;
+
+    case 'registro' :
+        $authController = new authController();
+        $authController->showRegistro();
 
 }

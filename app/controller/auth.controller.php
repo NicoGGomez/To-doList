@@ -16,4 +16,8 @@ class authController {
         $this->view->showLogin();
     }
 
+    function showRegistro(){
+        $this->view->showRegistro();
+    }
+
 }
