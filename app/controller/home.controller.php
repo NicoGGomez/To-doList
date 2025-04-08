@@ -1,5 +1,8 @@
 <?php 
 
+require 'app/view/home.view.php';
+require 'app/model/home.model.php';
+
 class homeController {
     private $view;
     private $model;
