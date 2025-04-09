@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-04-2025 a las 03:15:31
+-- Tiempo de generación: 09-04-2025 a las 15:51:35
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -31,8 +31,17 @@ CREATE TABLE `tarea` (
   `id_tarea` int(11) NOT NULL,
   `nombre_tarea` varchar(50) NOT NULL,
   `contenido_tarea` varchar(500) NOT NULL,
-  `tarea_completa` tinyint(1) NOT NULL
+  `tarea_completa` tinyint(1) NOT NULL,
+  `id_user_fk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tarea`
+--
+
+INSERT INTO `tarea` (`id_tarea`, `nombre_tarea`, `contenido_tarea`, `tarea_completa`, `id_user_fk`) VALUES
+(1, 'comprar', 'comprar pan', 0, 0),
+(2, 'comprar', 'comprar pan', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -45,16 +54,16 @@ CREATE TABLE `user` (
   `nombre_user` varchar(20) NOT NULL,
   `contrasenia_user` varchar(50) NOT NULL,
   `mail_user` varchar(50) NOT NULL,
-  `rol_user` varchar(20) NOT NULL,
-  `id_tarea_fk` int(11) DEFAULT NULL
+  `rol_user` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`id_user`, `nombre_user`, `contrasenia_user`, `mail_user`, `rol_user`, `id_tarea_fk`) VALUES
-(2, 'admin', 'admin1234', 'anelecarg@icloud.com', 'admin', NULL);
+INSERT INTO `user` (`id_user`, `nombre_user`, `contrasenia_user`, `mail_user`, `rol_user`) VALUES
+(0, 'admin', 'admin1234', 'anelecarg@icloud.com', 'admin'),
+(1, 'nico', '1234', 'anelecarg@gmail.com', '');
 
 --
 -- Índices para tablas volcadas
@@ -64,14 +73,15 @@ INSERT INTO `user` (`id_user`, `nombre_user`, `contrasenia_user`, `mail_user`, `
 -- Indices de la tabla `tarea`
 --
 ALTER TABLE `tarea`
-  ADD PRIMARY KEY (`id_tarea`);
+  ADD PRIMARY KEY (`id_tarea`),
+  ADD KEY `id_user_fk` (`id_user_fk`);
 
 --
 -- Indices de la tabla `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`),
-  ADD KEY `id_tarea_fk` (`id_tarea_fk`);
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -81,23 +91,23 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `tarea`
 --
 ALTER TABLE `tarea`
-  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `user`
+-- Filtros para la tabla `tarea`
 --
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_tarea_fk`) REFERENCES `tarea` (`id_tarea`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tarea`
+  ADD CONSTRAINT `tarea_ibfk_1` FOREIGN KEY (`id_user_fk`) REFERENCES `user` (`id_user`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
