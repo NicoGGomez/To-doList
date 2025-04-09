@@ -4,15 +4,29 @@
 
 <p>home</p>
 
+<?php if (isset($_SESSION['USER_ID'])) {?>
+    <p>hola <?= $_SESSION['USER_NAME'] ?></p>
+<?php } else { ?>
+    <p>hola</p>
+<?php } ?>
+
 <div class="contenedor-general-tarea">
     <!-- agregar tareas -->
-    <input type="text">
-    <button>Agregar tarea</button>
+    <form action="agregarTarea" method="POST">
+        <label for="">Tarea</label>
+        <input type="text" name="nombreTarea">
+        <label for="">Descripcion</label>
+        <input type="text" name="descripcionTarea">
+        <input type="submit" value="Agregar tarea">
+    </form>
 
     <div class="contenedor-tareas">
     <!-- tareas nuevas -->
-
+    <?php foreach ($tareas as $tarea) :  ?>
+        <?=$tarea ?>
+    <?php endforeach; ?>
     </div>
+
     <div class="contendor-tareas-realizadas">
     <!-- tareas ya terminadas -->
 

@@ -6,14 +6,23 @@
 
     <title>To do List</title>
 
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/style.css?=<?= time(); ?>">
+
+    <?php   
+    require_once __DIR__ . '/../app/helper/auth.helper.php';
+    AuthHelper::init(); // Inicia la sesión
+    ?>
 
 </head>
 <body>
     
-    <nav>    
+    <nav class="nav">    
         <ul>
             <li><a href="home">Nueva tarea</a></li>
-            <li><a href="login"><img width="32" height="32" src="https://img.icons8.com/windows/32/user-lock--v1.png" alt="user-lock--v1"/></a></li>
+            <?php if(isset($_SESSION['USER_ID'])){ ?>
+            <li><a href="perfil"><img width="32" height="32" src="https://img.icons8.com/windows/32/user-lock--v1.png" alt="user-lock--v1"/></a></li>
+            <?php } else { ?>
+            <li><a href="login"><img width="32" height="32" src="https://img.icons8.com/windows/32/user-lock--v1.png" alt="user-lock--v1"/></a></li> 
+            <?php } ?>
         </ul>
     </nav>

@@ -5,16 +5,20 @@
 <p>registro</p>
 
 <div class="contenedor-general-login">
-    <form action="sesionIniciada">
+    <form action="sesionRegistrada" method="POST">
         <label for="">nombre de usuario</label>
-        <input type="text" name="" id="">
+        <input type="text" name="nombre" id="" required>
         <label for="">mail</label>
-        <input type="email" name="" id="">
+        <input type="email" name="mail" id="" required>
         <label for="">contraseña</label>
-        <input type="password">
-        <input type="submit">
+        <input type="password" name="password" required>
+        <input type="submit" value="Enviar">
         <a href="login">ya estoy registrado!</a>
     </form>
+</div>
+
+<div class="contenedor-errores">
+    <p><?= $error ?></p>
 </div>
 
 </body>
