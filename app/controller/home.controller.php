@@ -19,13 +19,10 @@ class homeController {
     }
 
     function showHome(){
-        if (authHelper::init()) {
-            $idUser = $this->authModel->getUserByName($_SESSION['USER_NAME']);
-            $tareas = $this->tareaModel->todaLasTareas($idUser);
-            $this->view->showHome($tareas);
-        } else {
-            $this->view->showHome();
-        }
+        session_start();
+        $userId = $_SESSION['USER_ID'];
+        $tareas = $this->tareaModel->todaLasTareas($userId);
+        $this->view->showHome($tareas);
     }
 
 }

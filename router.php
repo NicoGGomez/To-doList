@@ -25,6 +25,13 @@ switch($params[0]){
         $tareaController = new tareaController();
         $tareaController->agregarTarea();
         break;
+
+    case 'delete' :
+        $tareaController = new tareaController();
+        if (isset($params[1])) {
+            $tareaController->borrarTarea($params[1]);
+        }
+        break;
         
     case 'sesionIniciada':
         $authController = new authController();

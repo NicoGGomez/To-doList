@@ -1,16 +1,15 @@
 <?php require('header.phtml'); ?>
 
-<h1>to do list</h1>
-
-<p>home</p>
-
-<?php if (isset($_SESSION['USER_ID'])) {?>
-    <p>hola <?= $_SESSION['USER_NAME'] ?></p>
-<?php } else { ?>
-    <p>hola</p>
-<?php } ?>
-
 <div class="contenedor-general-tarea">
+    <div class="contenedor-zona-titulo">
+    <h1>to do list</h1>
+    <?php if (isset($_SESSION['USER_ID'])) {?>
+    <p>hola <?= $_SESSION['USER_NAME'] ?></p>
+    <?php } else { ?>
+    <p>hola</p>
+    <?php } ?>
+    </div>
+    <div class="contenedor-agregar-tarea">
     <!-- agregar tareas -->
     <form action="agregarTarea" method="POST">
         <label for="">Tarea</label>
@@ -19,13 +18,18 @@
         <input type="text" name="descripcionTarea">
         <input type="submit" value="Agregar tarea">
     </form>
+    </div>
 
     <div class="contenedor-tareas">
     <!-- tareas nuevas -->
+    
     <?php foreach ($tareas as $tarea) :  ?>
-        <?=$tarea ?>
+        <div class="tarea">
+        <b><?= $tarea->nombre_tarea?></b><br>
+        <p><?= $tarea->contenido_tarea ?></p><a href="delete/<?= $tarea->id_tarea ?>">borrar</a><br>
+        </div>
     <?php endforeach; ?>
-    </div>
+  
 
     <div class="contendor-tareas-realizadas">
     <!-- tareas ya terminadas -->

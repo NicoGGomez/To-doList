@@ -2,7 +2,8 @@
 
 class homeView {
     
-    function showHome($tareas = null){
+    function showHome($tar = null){
+        $tareas = $tar;
         require 'templates/home.phtml';
     }
 

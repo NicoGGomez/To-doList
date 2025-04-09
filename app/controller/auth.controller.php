@@ -44,7 +44,7 @@ class authController {
 
         if ($this->userExistente($username)) {
             $this->model->addUser($username, $password, $mail);
-            $this->view->showHome();
+            $this->view->showHome($username->id_tarea_fk);
             $this->auth();
         } else {
             $this->view->showRegistro('usuario ya registrado');
