@@ -19,10 +19,16 @@ class homeController {
     }
 
     function showHome(){
-        session_start();
-        $userId = $_SESSION['USER_ID'];
-        $tareas = $this->tareaModel->todaLasTareas($userId);
-        $this->view->showHome($tareas);
+        if (authHelper::verify()) {
+            $userId = $_SESSION['USER_ID'];
+            $tareas = $this->tareaModel->todaLasTareas($userId);
+            $this->view->showHome($tareas);
+        } else {
+            
+             // Redirigir o mostrar error
+             header('Location: login');
+             exit();
+        }
     }
 
 }

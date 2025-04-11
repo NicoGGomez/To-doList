@@ -21,4 +21,9 @@ class authModel {
         return $this->db->lastInsertId();
     }
 
+    function deleteAccountbYid($id){
+        $query = $this->db->prepare('DELETE FROM user WHERE id_user = ?');
+        $query->execute([$id]);
+    }
+
 }

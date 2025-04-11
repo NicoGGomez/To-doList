@@ -32,7 +32,6 @@ class tareaController {
         $userId = $_SESSION['USER_ID'];
         $tareas = $this->model->todaLasTareas($userId);
         header('Location: ' . BASE_URL);
-
     }
 
 }

@@ -53,6 +53,13 @@ switch($params[0]){
         $authController->showPerfil();
         break;
 
+    case 'borrarCuenta':
+        $authController = new authController();
+        if (isset($params[1])) {
+            $authController->deleteAccount($params[1]);
+        }
+        break;
+
     case 'sesionRegistrada':
         $authController = new authController();
         $authController->addUser();

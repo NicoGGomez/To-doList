@@ -25,4 +25,12 @@ class authHelper {
         header('Location: ' . BASE_URL);
     }
 
+    public static function verify() {
+        self::init();
+        if (empty($_SESSION['USER_ID'])) {
+            return false;
+        }
+        return true;
+    }
+
 }

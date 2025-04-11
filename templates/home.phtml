@@ -12,21 +12,21 @@ $hora_actual = date("H");
         <h1>to do list</h1>
         <?php if (isset($_SESSION['USER_ID'])) {?>
         <p><?php if ($hora_actual >= 6 && $hora_actual < 12) {
-            echo "Buen día";
+            echo "🌄 Buen día";
             } elseif ($hora_actual >= 12 && $hora_actual < 18) {
-            echo "Buenas tardes";
+            echo "🌇 Buenas tardes";
             } else {
-            echo "Buenas noches";
+            echo "🌃 Buenas noches";
             } ?> <?= $_SESSION['USER_NAME'] . '!' ?></p>
         <?php } else { ?>
         <p><?php 
             
             if ($hora_actual >= 6 && $hora_actual < 12) {
-                echo "Buen día";
+                echo "Buen día 🌄";
                 } elseif ($hora_actual >= 12 && $hora_actual < 18) {
-                echo "Buenas tardes";
+                echo "Buenas tardes 🌇";
                 } else {
-                echo "Buenas noches";
+                echo "Buenas noches 🌃";
                 }
             
             ?></p>

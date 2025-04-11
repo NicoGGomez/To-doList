@@ -23,8 +23,8 @@ class authController {
         }
 
         $user = $this->model->getUserByName($username);
-
-        if($user && $user->contrasenia_user === $password){
+        
+        if($user && password_verify($password, $user->contrasenia_user)){
             authHelper::login($user);
         } else {
             $this->view->showLogin('usuario invalido!!');
@@ -35,6 +35,7 @@ class authController {
     function addUser(){
         $username = $_POST['nombre'];
         $password = $_POST['password'];
+        $passwordHashed = password_hash($password, PASSWORD_DEFAULT);
         $mail = $_POST['mail'];
 
         if (empty($username) || empty($password) || empty($mail)) {
@@ -43,12 +44,20 @@ class authController {
         }
 
         if ($this->userExistente($username)) {
-            $this->model->addUser($username, $password, $mail);
+            $this->model->addUser($username, $passwordHashed, $mail);
             $this->view->showHome($username->id_tarea_fk);
             $this->auth();
         } else {
             $this->view->showRegistro('usuario ya registrado');
         }
+    }
+
+    function deleteAccount($userId){
+        session_start();
+        $this->model->deleteAccountById($userId);
+        authHelper::logout();
+        $this->view->showLogin();
+        header("Location: " . BASE_URL . "login");
     }
 
     function userExistente($nombre){
