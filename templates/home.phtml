@@ -1,38 +1,77 @@
 <?php require('header.phtml'); ?>
 
+<?php
+
+$hora_actual = date("H");
+
+?>
+
 <div class="contenedor-general-tarea">
+
     <div class="contenedor-zona-titulo">
-    <h1>to do list</h1>
-    <?php if (isset($_SESSION['USER_ID'])) {?>
-    <p>hola <?= $_SESSION['USER_NAME'] ?></p>
-    <?php } else { ?>
-    <p>hola</p>
-    <?php } ?>
+        <h1>to do list</h1>
+        <?php if (isset($_SESSION['USER_ID'])) {?>
+        <p><?php if ($hora_actual >= 6 && $hora_actual < 12) {
+            echo "Buen día";
+            } elseif ($hora_actual >= 12 && $hora_actual < 18) {
+            echo "Buenas tardes";
+            } else {
+            echo "Buenas noches";
+            } ?> <?= $_SESSION['USER_NAME'] . '!' ?></p>
+        <?php } else { ?>
+        <p><?php 
+            
+            if ($hora_actual >= 6 && $hora_actual < 12) {
+                echo "Buen día";
+                } elseif ($hora_actual >= 12 && $hora_actual < 18) {
+                echo "Buenas tardes";
+                } else {
+                echo "Buenas noches";
+                }
+            
+            ?></p>
+        <?php } ?>
     </div>
+
+
     <div class="contenedor-agregar-tarea">
-    <!-- agregar tareas -->
-    <form action="agregarTarea" method="POST">
-        <label for="">Tarea</label>
-        <input type="text" name="nombreTarea">
-        <label for="">Descripcion</label>
-        <input type="text" name="descripcionTarea">
-        <input type="submit" value="Agregar tarea">
-    </form>
+        <!-- agregar tareas -->
+        <div class="contenedor-form-agregar">
+        <form action="agregarTarea" method="POST">
+            <label for="">Tarea</label>
+            <input type="text" name="nombreTarea" required>
+            <label for="">Descripcion</label>
+            <input type="text" name="descripcionTarea">
+            <input class="input-enviar" type="submit" value="Agregar tarea">
+        </form>
+        </div>
     </div>
 
     <div class="contenedor-tareas">
     <!-- tareas nuevas -->
-    
-    <?php foreach ($tareas as $tarea) :  ?>
-        <div class="tarea">
-        <b><?= $tarea->nombre_tarea?></b><br>
-        <p><?= $tarea->contenido_tarea ?></p><a href="delete/<?= $tarea->id_tarea ?>">borrar</a><br>
-        </div>
-    <?php endforeach; ?>
-  
+    <div class="contenedor-zona-titulo-tarea">
+        <?php if (isset($_SESSION['USER_ID'])) {?>
+        <p>Tareas <?= $_SESSION['USER_NAME'] ?></p>
+        <?php } else { ?>
+        <p>Logueate para agregar nuevas tareas!!</p>
+        <?php } ?>
+    </div>
 
-    <div class="contendor-tareas-realizadas">
-    <!-- tareas ya terminadas -->
+    
+        <?php foreach ($tareas as $tarea) :  ?>
+        <div class="tarea">
+        <a class="borrar" href="delete/<?= $tarea->id_tarea ?>">x</a>
+            <div class="contenedor-info-tarea">
+            <b><?= $tarea->nombre_tarea?></b><br>
+            <p><?= $tarea->contenido_tarea ?></p><br>
+            </div>
+        </div>
+        <?php endforeach; ?>
+  
+        <div class="contendor-tareas-realizadas">
+        <!-- tareas ya terminadas -->
+
+        </div>
 
     </div>
 </div>

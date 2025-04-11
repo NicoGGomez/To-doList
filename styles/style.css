@@ -1,2 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Condensed+One&display=swap');
+
 @import url(header.css);
 @import url(home.css);
+@import url(perfil.css);
+@import url(login.css);
+@import url(registro.css);

@@ -1,0 +1,55 @@
+/* ESTILOS DE LA ZONA DEL TITULO */
+
+.contenedor-zona-titulo {
+    margin: 10vh 0 10vh 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedor-zona-titulo h1 {
+    font-size: 10vh;
+}
+
+.contenedor-general-login {
+    width: 100%;
+    height: 80vh;
+}
+
+.contenedor-login {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-login form {
+    width: 50vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #d3d3d3;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
+    padding: 2vh 2vh 2vh 2vh;
+}
+
+.contenedor-login form label {
+    margin: 0 0 1vh 0;
+}
+
+.contenedor-login form input {
+    height: 30px;
+    margin: 0 0 1vh 0;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
+}
+
+.contenedor-login .input-enviar {
+    margin-top: 1vh;
+}
+
+.contenedor-login a {
+    margin-top: 1vh;
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    justify-content: center;
+}

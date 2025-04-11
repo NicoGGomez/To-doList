@@ -1,18 +1,21 @@
 <?php require('header.phtml'); ?>
 
-<h1>to do list</h1>
-
-<p>login</p>
-
 <div class="contenedor-general-login">
+
+    <div class="contenedor-zona-titulo">
+        <h1>to do list</h1>
+    </div>
+
+    <div class="contenedor-login">
     <form action="sesionIniciada" method="POST">
-        <label for="">nombre</label>
+        <label for="">nombre de usuario</label>
         <input type="text" name="nombre" id="">
         <label for="">contraseña</label>
         <input type="password" name="password">
-        <input type="submit" value="Enviar">
+        <input class="input-enviar" type="submit" value="Enviar">
+        <a href="registro">no estoy registrado!</a>
     </form>
-    <a href="registro">no estoy registrado!</a>
+    </div>
 </div>
 
 <div class="contenedor-errores">

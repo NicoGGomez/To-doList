@@ -22,6 +22,7 @@ class tareaController {
         $this->model->agregarTarea($userId, $nombreTarea, $descripcionTarea, $booleanTarea);
         $tareas = $this->model->todaLasTareas($userId);
         $this->view->showHome($tareas);
+        header('Location: ' . BASE_URL);
     }
 
     function borrarTarea($idTarea){
